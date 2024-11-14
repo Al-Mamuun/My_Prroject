@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Project Details{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            overflow-y: auto; /* Allows scrolling on the page */
+            margin-top: 100px; 
+        }
+
+        .project-details-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .project-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .project-metrics {
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .back-link,
+        .update-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .back-link {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+
+        .update-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .update-button:hover {
+            background-color: #218838;
+        }
+        .danger-btn {
+            padding: 10px 20px;
+            background-color: #dc3545;  /* Red color for danger */
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+    
+        .danger-btn:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+    
+        .danger-btn:active {
+            background-color: #a71d2a; /* Even darker red when clicked */
+        }
+    </style>
+
+    <div class="project-details-container">
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+
+        <div class="project-metrics">
+            <p><strong>Goal:</strong> ${{ project.goalAmount }}</p>
+            <p><strong>Collected:</strong> ${{ project.collectedAmount }}</p>
+            <p><strong>Status:</strong> {{ project.status }}</p>
+        </div>
+
+        <!-- Updated Back to Project List Button -->
+        <a href="{% url 'project_list' %}" class="back-link">← Back to Project List</a>
+
+        <!-- Add the Update Button -->
+        <a href="{% url 'update' project.id %}" class="update-button">Update Project</a>
+
+        <!-- Add the Delete Button -->
+        <a href="{% url 'delete_p' project.id %}" class="delete-link danger-btn">Delete</a>
+
+    </div>
+{% endblock %}

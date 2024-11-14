@@ -1,0 +1,16 @@
+<!-- templates/Donation/donation.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Donate Now</h2>
+    <form action="{% url 'donate' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="amount">Donation Amount</label>
+            <input type="number" id="amount" name="amount" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-gradient mt-3">Donate Now</button>
+    </form>
+</div>
+{% endblock %}
